@@ -19,7 +19,7 @@ diff -urN integrit-3.01/Makefile.in integrit-3.01.dzikus/Makefile.in
  	@echo "  re-copied to $(SBINDIR) at runtime or run directly"
 diff -urN integrit-3.01/doc/Makefile.in integrit-3.01.dzikus/doc/Makefile.in
 --- integrit-3.01/doc/Makefile.in	Tue Jul 16 01:57:57 2002
-+++ integrit-3.01.dzikus/doc/Makefile.in	Mon Aug 12 15:59:24 2002
++++ integrit-3.01.dzikus/doc/Makefile.in	Wed Aug 14 02:16:36 2002
 @@ -33,13 +33,13 @@
  
  install-man :
@@ -39,7 +39,7 @@ diff -urN integrit-3.01/doc/Makefile.in integrit-3.01.dzikus/doc/Makefile.in
  	  done; \
  	done
  
-@@ -53,21 +53,21 @@
+@@ -53,35 +53,15 @@
  # so we accomodate at the price of some complexity.
  # 
  install-info : 
@@ -56,18 +56,31 @@ diff -urN integrit-3.01/doc/Makefile.in integrit-3.01.dzikus/doc/Makefile.in
 +	  echo installing $$f in $(DESTDIR)$(infodir); \
 +	  $(INSTALL) -m 644 $(srcdir)/$$f $(DESTDIR)$(infodir); \
  	done
- 	@:; iistatus=0; \
- 	if ! $(INSTALL_INFO) --version > /dev/null 2>&1; then \
- 	  iistatus=1; \
- 	elif test ! -z "`$(INSTALL_INFO) --version 2>&1 | grep texinfo`"; then \
- 	  (set -xe; \
+-	@:; iistatus=0; \
+-	if ! $(INSTALL_INFO) --version > /dev/null 2>&1; then \
+-	  iistatus=1; \
+-	elif test ! -z "`$(INSTALL_INFO) --version 2>&1 | grep texinfo`"; then \
+-	  (set -xe; \
 -	    $(INSTALL_INFO) --dir-file=${infodir}/dir \
 -	                    --info-file=${infodir}/integrit.info < /dev/null \
-+	    $(INSTALL_INFO) --dir-file=$(DESTDIR)${infodir}/dir \
-+	                    --info-file=$(DESTDIR)${infodir}/integrit.info < /dev/null \
- 	  ) || iistatus=1; \
- 	else \
- 	  echo " ***                                               *** "; \
+-	  ) || iistatus=1; \
+-	else \
+-	  echo " ***                                               *** "; \
+-	  echo " *** non-texinfo version of install-info detected. *** "; \
+-	  echo " *** see INSTALL for more information              *** "; \
+-	  echo " ***                                               *** "; \
+-	fi; \
+-	if [ $$iistatus != 0 ]; then \
+-	  echo "Warning: $(INSTALL_INFO) did not run successfully."; \
+-	  echo "         to complete the installation of the documenation,"; \
+-	  echo "         please read INSTALL."; \
+-	  echo "(pausing 3 seconds)"; \
+-	  sleep 3; \
+-	fi
++	@:; iistatus=0
+ 
+ distready : info
+ 
 diff -urN integrit-3.01/utils/Makefile.in integrit-3.01.dzikus/utils/Makefile.in
 --- integrit-3.01/utils/Makefile.in	Mon Feb  4 05:28:30 2002
 +++ integrit-3.01.dzikus/utils/Makefile.in	Mon Aug 12 15:42:57 2002
