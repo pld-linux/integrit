@@ -7,13 +7,15 @@ Release:	1
 License:	GPL v2
 Vendor:		Ed L Cashin <ecashin@users.sourceforge.net>
 Group:		Applications/System
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.%{patchlevel}.tar.gz
+Source0:	http://dl.sourceforge.net/integrit/%{name}-%{version}.%{patchlevel}.tar.gz
 # Source0-md5:	626f9a3ed4ab0901d5518597c8573af1
 Source1:	%{name}.conf
 Patch0:		%{name}-DESTDIR.patch
+Patch1:		%{name}-info.patch
 URL:		http://integrit.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	glibc-static
+BuildRequires:	texinfo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/%{name}
@@ -33,7 +35,8 @@ sumy kontrolnej MD5 nowo generowanych baz).
 
 %prep
 %setup -q
-%patch0	-p1
+%patch0 -p1
+%patch1 -p1
 
 %build
 %{__autoconf}
@@ -43,6 +46,7 @@ cd ..
 %configure
 %{__make}
 %{__make} utils
+%{__make} -C doc info
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -64,10 +68,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%{_infodir}/*.info*
 %doc README Changes INSTALL examples
-%{_mandir}/man1/*
 %attr(755,root,root) %{_sbindir}/*
 %attr(755,root,root) %{_bindir}/*
 %attr(750,root,root) %dir %{_pkglibdir}
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}.conf
+%{_infodir}/*.info*
+%{_mandir}/man1/*
