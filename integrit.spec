@@ -13,6 +13,7 @@ Source1:	%{name}.conf
 Patch0:		%{name}-DESTDIR.patch
 URL:		http://integrit.sourceforge.net/
 BuildRequires:	autoconf
+BuildRequires:	glibc-static
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/%{name}
@@ -55,9 +56,15 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post
+[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+
+%postun
+[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+
 %files
 %defattr(644,root,root,755)
-%{_datadir}/info/integrit.info*
+%{_infodir}/*.info*
 %doc README Changes INSTALL examples
 %{_mandir}/man1/*
 %attr(755,root,root) %{_sbindir}/*
