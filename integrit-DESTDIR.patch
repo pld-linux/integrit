@@ -1,0 +1,95 @@
+diff -urN integrit-2.03/Makefile.in integrit-2.03.dzikus/Makefile.in
+--- integrit-2.03/Makefile.in	Fri Jul 27 05:22:29 2001
++++ integrit-2.03.dzikus/Makefile.in	Thu Oct  4 23:19:26 2001
+@@ -81,11 +81,11 @@
+ 	  echo installing auxiliary programs; \
+ 	  cd aux && $(MAKE) $@; \
+ 	fi
+-	@if test ! -d $(SBINDIR); then \
++	@if test ! -d $(DESTDIR)$(SBINDIR); then \
+ 	  echo creating directory $(SBINDIR); \
+-	  $(INSTALL) -d -m 755 $(SBINDIR); \
++	  $(INSTALL) -d -m 755 $(DESTDIR)$(SBINDIR); \
+ 	fi
+-	$(INSTALL) $(STRIP) -m 755 $(PROG) $(SBINDIR)/$(PROG)
++	$(INSTALL) $(STRIP) -m 755 $(PROG) $(DESTDIR)$(SBINDIR)/$(PROG)
+ 	@echo
+ 	@echo 'It is recommended that the binary be copied to a secure location and'
+ 	@echo "  re-copied to $(SBINDIR) at runtime or run directly"
+diff -urN integrit-2.03/aux/Makefile.in integrit-2.03.dzikus/aux/Makefile.in
+--- integrit-2.03/aux/Makefile.in	Wed Jul 25 03:42:22 2001
++++ integrit-2.03.dzikus/aux/Makefile.in	Thu Oct  4 23:19:26 2001
+@@ -59,13 +59,13 @@
+ 	rm -f Makefile aux.mak
+ 
+ install : $(PROGS)
+-	@if test ! -d $(SBINDIR); then \
++	@if test ! -d $(DESTDIR)$(SBINDIR); then \
+ 	  echo creating directory $(SBINDIR); \
+-	  $(INSTALL) -d -m 755 $(SBINDIR); \
++	  $(INSTALL) -d -m 755 $(DESTDIR)$(SBINDIR); \
+ 	fi
+-	$(INSTALL) $(STRIP) -m 755 i-viewdb $(SBINDIR)/i-viewdb
+-	@if test ! -d $(BINDIR); then \
++	$(INSTALL) $(STRIP) -m 755 i-viewdb $(DESTDIR)$(SBINDIR)/i-viewdb
++	@if test ! -d $(DESTDIR)$(BINDIR); then \
+ 	  echo creating directory $(BINDIR); \
+-	  $(INSTALL) -d -m 755 $(BINDIR); \
++	  $(INSTALL) -d -m 755 $(DESTDIR)$(BINDIR); \
+ 	fi
+-	$(INSTALL) $(STRIP) -m 755 i-ls $(BINDIR)/i-ls
++	$(INSTALL) $(STRIP) -m 755 i-ls $(DESTDIR)$(BINDIR)/i-ls
+diff -urN integrit-2.03/doc/Makefile.in integrit-2.03.dzikus/doc/Makefile.in
+--- integrit-2.03/doc/Makefile.in	Wed Sep 19 03:08:26 2001
++++ integrit-2.03.dzikus/doc/Makefile.in	Thu Oct  4 23:24:58 2001
+@@ -28,24 +28,24 @@
+ 
+ install : 
+ 	@for n in 1; do \
+-	  if test ! -d $(MANDIR)/man$$n; then \
++	  if test ! -d $(DESTDIR)$(MANDIR)/man$$n; then \
+ 	    echo creating directory $(MANDIR)/man$$n; \
+-	    $(INSTALL) -d $(MANDIR)/man$$n; \
++	    $(INSTALL) -d $(DESTDIR)$(MANDIR)/man$$n; \
+ 	  fi; \
+ 	  for f in *.$$n; do \
+ 	    echo installing manpage $$f in $(MANDIR)/man$$n; \
+-	    $(INSTALL) -m 644 $$f $(MANDIR)/man$$n/$$f; \
++	    $(INSTALL) -m 644 $$f $(DESTDIR)$(MANDIR)/man$$n/$$f; \
+ 	  done; \
+ 	done
+-	@if test ! -d $(infodir); then \
++	@if test ! -d $(DESTDIR)$(infodir); then \
+ 	  echo creating directory $(infodir); \
+-	  $(INSTALL) -d $(infodir); \
++	  $(INSTALL) -d $(DESTDIR)$(infodir); \
+ 	fi
+ 	@for f in $(INFO_FILES); do \
+ 	  echo installing $$f in $(infodir); \
+-	  $(INSTALL) -m 644 $$f $(infodir); \
++	  $(INSTALL) -m 644 $$f $(DESTDIR)$(infodir); \
+ 	done
+-	@(set -xe; $(INSTALL_INFO) --dir-file=${infodir}/dir --info-file=${infodir}/integrit) || { \
++	@(set -xe; $(INSTALL_INFO) --dir-file=$(DESTDIR)${infodir}/dir --info-file=$(DESTDIR)${infodir}/integrit) || { \
+ 	  echo "Warning: $(INSTALL_INFO) did not run successfully."; \
+ 	  echo "         to complete the installation of the documenation,"; \
+ 	  echo "         Make sure info is installed and $(INSTALL_INFO) is in"; \
+diff -urN integrit-2.03/hashtbl/Makefile.in integrit-2.03.dzikus/hashtbl/Makefile.in
+--- integrit-2.03/hashtbl/Makefile.in	Wed Jul 25 03:42:22 2001
++++ integrit-2.03.dzikus/hashtbl/Makefile.in	Thu Oct  4 23:26:30 2001
+@@ -58,11 +58,11 @@
+ 
+ install : $(LIBRARY)
+ 	@for d in @libdir@ @includedir@; do \
+-	  if test ! -d $$d; then \
++	  if test ! -d $(DESTDIR)$$d; then \
+ 	    echo "creating directory $$d"; \
+-	    $(INSTALL) -d -m 755 $$d; \
++	    $(INSTALL) -d -m 755 $(DESTDIR)$$d; \
+ 	  fi \
+ 	done
+-	$(INSTALL) $(STRIP) -m 644 $< @libdir@/$<
+-	$(INSTALL) hashtbl.h @includedir@/hashtbl.h
++	$(INSTALL) $(STRIP) -m 644 $< $(DESTDIR)@libdir@/$<
++	$(INSTALL) hashtbl.h $(DESTDIR)@includedir@/hashtbl.h
+ 
