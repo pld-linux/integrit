@@ -3,7 +3,7 @@ Summary(pl):	System weryfikacji plików
 Name:		integrit
 Version:	3.01
 %define		patchlevel	03
-Release:	0.3
+Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://download.sourceforge.net/integrit/%{name}-%{version}.%{patchlevel}.tar.gz
