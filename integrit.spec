@@ -1,4 +1,5 @@
-Summary:	integrit is a file verification system.
+Summary:	integrit is a file verification system
+Summary(pl):	System weryfikacji plików
 Name:		integrit 
 Version:	2.03
 %define		patchlevel 02
@@ -9,7 +10,7 @@ Group(de):	Applikationen/System
 Group(pl):	Aplikacje/System
 Source0:	http://download.sourceforge.net/integrit/%{name}-%{version}.%{patchlevel}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
-URL:		http://integrit.sourceforge.net 
+URL:		http://integrit.sourceforge.net/
 Vendor:		Ed L Cashin <ecashin@users.sourceforge.net>  
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -19,8 +20,13 @@ It has a small memory footprint, uses up to date cryptographic
 algorithms, and has features that make sense (like including the MD5
 checksum of newly generated databases in the report).
 
-%prep
+%description -l pl
+integrit to prosta, bezpieczna alternatywa dla produktów typu
+tripwire. Ma ma³e zu¿ycie pamiêci, u¿ywa aktualnych algorytmów
+kryptograficznych, ma sensowne mo¿liwo¶ci (typu do³±czanie do raportu
+sumy kontrolnej MD5 nowo generowanych baz).
 
+%prep
 %setup -q -n %{name}-%{version}
 %patch0 -p1
 
