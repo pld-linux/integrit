@@ -57,8 +57,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README Changes INSTALL examples/*
 %{_datadir}/info/integrit.info*
+%doc README Changes INSTALL examples
 %{_mandir}/man1/*
 %attr(755,root,root) %{_sbindir}/*
 %attr(755,root,root) %{_bindir}/*
