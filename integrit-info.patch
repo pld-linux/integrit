@@ -1,0 +1,14 @@
+--- integrit-3.01/doc/integrit.texi.in.orig	2002-01-05 19:32:53.000000000 +0100
++++ integrit-3.01/doc/integrit.texi.in	2004-10-12 11:59:07.000000000 +0200
+@@ -30,9 +30,9 @@
+ @c    *** UPDATE DATE AT "@subtitle" WHEN EDITING THE DOCUMENT ***
+ @c 
+ 
+-@dircategory Security Tools
++@dircategory Miscellaneous:
+ @direntry
+-* Integrit: (integrit).	        Integrit File Verification System.
++* Integrit: (integrit).			Integrit File Verification System
+ @end direntry
+ 
+ @html
