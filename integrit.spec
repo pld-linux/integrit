@@ -31,7 +31,7 @@ kryptograficznych, ma sensowne mo¿liwo¶ci (typu do³±czanie do raportu
 sumy kontrolnej MD5 nowo generowanych baz).
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 %patch0	-p1
 
 %build
