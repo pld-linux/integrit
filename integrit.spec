@@ -6,8 +6,6 @@ Version:	2.03
 Release:	0.1
 License:	GPL v2
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(pl):	Aplikacje/System
 Source0:	http://download.sourceforge.net/integrit/%{name}-%{version}.%{patchlevel}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
 URL:		http://integrit.sourceforge.net/
