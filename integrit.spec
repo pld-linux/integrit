@@ -5,12 +5,13 @@ Version:	3.01
 %define		patchlevel	03
 Release:	1
 License:	GPL v2
+Vendor:		Ed L Cashin <ecashin@users.sourceforge.net>
 Group:		Applications/System
 Source0:	http://download.sourceforge.net/integrit/%{name}-%{version}.%{patchlevel}.tar.gz
 Source1:	%{name}.conf
 Patch0:		%{name}-DESTDIR.patch
 URL:		http://integrit.sourceforge.net/
-Vendor:		Ed L Cashin <ecashin@users.sourceforge.net>
+BuildRequires:	autoconf
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/%{name}
