@@ -3,14 +3,18 @@ Summary(pl):	System weryfikacji plików
 Name:		integrit
 Version:	3.01
 %define		patchlevel	03
-Release:	0.2
+Release:	0.3
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://download.sourceforge.net/integrit/%{name}-%{version}.%{patchlevel}.tar.gz
+Source1:	%{name}.conf
 Patch0:		%{name}-DESTDIR.patch
 URL:		http://integrit.sourceforge.net/
 Vendor:		Ed L Cashin <ecashin@users.sourceforge.net>
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_sysconfdir	/etc/%{name}
+%define		_pkglibdir	/var/lib/%{name}
 
 %description
 integrit is a simple yet secure alternative to products like tripwire.
@@ -43,6 +47,9 @@ rm -rf $RPM_BUILD_ROOT
 	install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_pkglibdir}}
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -53,3 +60,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 %attr(755,root,root) %{_sbindir}/*
 %attr(755,root,root) %{_bindir}/*
+%attr(750,root,root) %dir %{_pkglibdir}
+%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}.conf
