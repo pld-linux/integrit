@@ -8,6 +8,7 @@ License:	GPL v2
 Vendor:		Ed L Cashin <ecashin@users.sourceforge.net>
 Group:		Applications/System
 Source0:	http://download.sourceforge.net/integrit/%{name}-%{version}.%{patchlevel}.tar.gz
+# Source0-md5:	626f9a3ed4ab0901d5518597c8573af1
 Source1:	%{name}.conf
 Patch0:		%{name}-DESTDIR.patch
 URL:		http://integrit.sourceforge.net/
