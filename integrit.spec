@@ -13,7 +13,7 @@ Source1:	%{name}.conf
 Patch0:		%{name}-DESTDIR.patch
 URL:		http://integrit.sourceforge.net/
 BuildRequires:	autoconf
-Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/%{name}
 %define		_pkglibdir	/var/lib/%{name}
