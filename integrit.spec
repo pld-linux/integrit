@@ -1,6 +1,6 @@
 Summary:	integrit is a file verification system
 Summary(pl):	System weryfikacji plików
-Name:		integrit 
+Name:		integrit
 Version:	2.03
 %define		patchlevel 02
 Release:	0.1
@@ -9,7 +9,7 @@ Group:		Applications/System
 Source0:	http://download.sourceforge.net/integrit/%{name}-%{version}.%{patchlevel}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
 URL:		http://integrit.sourceforge.net/
-Vendor:		Ed L Cashin <ecashin@users.sourceforge.net>  
+Vendor:		Ed L Cashin <ecashin@users.sourceforge.net>
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -30,7 +30,7 @@ sumy kontrolnej MD5 nowo generowanych baz).
 
 %build
 %configure
-%{__make} 
+%{__make}
 %{__make} aux
 
 %install
