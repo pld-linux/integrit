@@ -5,7 +5,6 @@ Version:	3.01
 %define		patchlevel	03
 Release:	1
 License:	GPL v2
-Vendor:		Ed L Cashin <ecashin@users.sourceforge.net>
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/integrit/%{name}-%{version}.%{patchlevel}.tar.gz
 # Source0-md5:	626f9a3ed4ab0901d5518597c8573af1
@@ -50,11 +49,12 @@ cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_pkglibdir}}
+
 %{__make} \
 	install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_pkglibdir}}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}
 
 %clean
