@@ -1,5 +1,5 @@
 Summary:	integrit is a file verification system
-Summary(pl):	System weryfikacji plikÛw
+Summary(pl.UTF-8):   System weryfikacji plik√≥w
 Name:		integrit
 Version:	3.01
 %define		patchlevel	03
@@ -26,10 +26,10 @@ It has a small memory footprint, uses up to date cryptographic
 algorithms, and has features that make sense (like including the MD5
 checksum of newly generated databases in the report).
 
-%description -l pl
-integrit to prosta, bezpieczna alternatywa dla produktÛw typu
-tripwire. Ma ma≥e zuøycie pamiÍci, uøywa aktualnych algorytmÛw
-kryptograficznych, ma sensowne moøliwo∂ci (typu do≥±czanie do raportu
+%description -l pl.UTF-8
+integrit to prosta, bezpieczna alternatywa dla produkt√≥w typu
+tripwire. Ma ma≈Çe zu≈ºycie pamiƒôci, u≈ºywa aktualnych algorytm√≥w
+kryptograficznych, ma sensowne mo≈ºliwo≈õci (typu do≈ÇƒÖczanie do raportu
 sumy kontrolnej MD5 nowo generowanych baz).
 
 %prep
