@@ -1,5 +1,5 @@
 Summary:	integrit is a file verification system
-Summary(pl.UTF-8):   System weryfikacji plików
+Summary(pl.UTF-8):	System weryfikacji plików
 Name:		integrit
 Version:	3.01
 %define		patchlevel	03
